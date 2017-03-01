@@ -5,16 +5,23 @@ namespace Pooling
 {
     public class PoolingManager : MonoBehaviour
     {
-        public static PoolingManager T;
+        //Enables the pooling manager to be used anywhere
+        public static PoolingManager Instance;
+        
+        //Defines what folders to use from the Resource directory
         public string[] ResourceName;
+
+        //To hold pooled objects
         private Dictionary<string, List<GameObject>> _objectPool;
         private Dictionary<string, GameObject> _resourceMapper;
         private Dictionary<string, GameObject> _objectHolder;
+
+        //Parent of all instantiated objects
         private GameObject _masterHolder;
 
         void Awake()
         {
-            T = this;
+            Instance = this;
             _objectPool = new Dictionary<string, List<GameObject>>();
             _objectHolder = new Dictionary<string, GameObject>();
             _resourceMapper = new Dictionary<string, GameObject>();
@@ -32,6 +39,7 @@ namespace Pooling
 
         }
 
+        //Adds the gameobject back to the pool
         public void Add(string className, GameObject objectToAdd)
         {
             if (!className.Contains("(Clone)"))
@@ -42,6 +50,7 @@ namespace Pooling
             _objectPool[className].Add(objectToAdd);
         }
 
+        //Creates Key in Dictionary if it does not exist
         void CreateIfDoesNotExist(string className)
         {
             if (!_objectPool.ContainsKey(className))
@@ -50,6 +59,7 @@ namespace Pooling
             }
         }
 
+        //Instantiate object by name
         public GameObject Instantiate(string objectToSpawn, Vector3 startingSpawn, Quaternion rotation)
         {
             string className = objectToSpawn;
@@ -93,6 +103,7 @@ namespace Pooling
             }
         }
 
+        //Instantiate object by name with parent
         public GameObject Instantiate(string objectToSpawn, Vector3 startingSpawn, Quaternion rotation, Transform parent)
         {
             string className = objectToSpawn;
@@ -124,6 +135,7 @@ namespace Pooling
             }
         }
 
+        //Creates child to hold different objects.
         public void CheckIfHolderExists(string objectToHold)
         {
             if (!_objectHolder.ContainsKey(objectToHold))

@@ -6,7 +6,7 @@ namespace Pooling
     {
         void OnDisable()
         {
-            PoolingManager.T.Add(gameObject.name, this.gameObject);
+            PoolingManager.Instance.Add(gameObject.name, this.gameObject);
         }
 
     }
