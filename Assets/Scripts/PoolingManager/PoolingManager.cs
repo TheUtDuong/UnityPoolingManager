@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Pooling
 {
+    //Attach this script to a gameobject to use
     public class PoolingManager : MonoBehaviour
     {
         //Enables the pooling manager to be used anywhere
@@ -21,7 +22,14 @@ namespace Pooling
 
         void Awake()
         {
-            Instance = this;
+            //Make sure there is only one instance of PoolingManager
+            if(Instance == null)
+                Instance = this;
+            else
+            {
+                Destroy(this);
+            }
+
             _objectPool = new Dictionary<string, List<GameObject>>();
             _objectHolder = new Dictionary<string, GameObject>();
             _resourceMapper = new Dictionary<string, GameObject>();
