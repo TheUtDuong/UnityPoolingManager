@@ -7,8 +7,13 @@ namespace Pooling
     public class PoolingManager : MonoBehaviour
     {
         //Enables the pooling manager to be used anywhere
-        public static PoolingManager Instance;
-        
+        public static PoolingManager Instance
+        {
+            get { return _instance; }
+        }
+
+        private static PoolingManager _instance;
+
         //Defines what folders to use from the Resource directory
         public string[] ResourceName;
 
@@ -23,8 +28,8 @@ namespace Pooling
         void Awake()
         {
             //Make sure there is only one instance of PoolingManager
-            if(Instance == null)
-                Instance = this;
+            if(_instance == null)
+                _instance = this;
             else
             {
                 Destroy(this);
