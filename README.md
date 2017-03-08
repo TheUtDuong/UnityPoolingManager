@@ -1,39 +1,29 @@
-# UnityPoolingManager
-Simple Pooling Manager for Unity3D
-
-What is it?
-  -----------
-
-  A simple pooling manager for Unity3D projects.
+# Unity Pooling Manager
+> Simple pooling manager for Unity3D.
 
 
-  Getting started
-  ------------------
-  
-  PoolingManager.cs- Script to attach to an empty GameObject to enable pooling and instantiating by name.
-  
-  ObjectsToPool.cs - Attach to gameobject that you wish to pool. Object is pooled when it gets disabled.
+Simple singleton pooling manager implementation. It manages pooled gameObjects by name and can also spawn them by name. Simply attach the PoolingManager script to an empty gameObject. Objects that you wish to use in the PoolManager must be put into a subfolder in the Resources folders (Ex. Resources/Enemies). You will need to put the names of the subfolders in the PoolingManager's inspector variable "Resource Name" array. The ObjectToPool script should be attached to any gameObject you wish to pool. It will add the gameObject to the pool when it gets disabled. 
 
-  Resources Folder - PoolingManager will load specified subfolders in this directory for objects to instantiate.
+## Installation
 
-  Dependencies
-  ------------------
-  
-  -Unity3D Game Engine
+Requires Unity3D
 
-  How To Use
-  ------------------
-  
-  -Attach "PoolingManager" script to a gameobject (an empty one is ideal).
-  
-  -Set up your Resources folder with subfolders such as "Resources/Enemies".
 
-  -Select the gameobject with the PoolingManager script attached, set the "Resource Name" array in the inspector
-		with the Resource subfolders you wish you load for instantiating.
+## Usage example
 
-  -Attach the "ObjectToPool" script to any object you wish to pool after being disabled.
+To spawn a penguin monster from your pool you would simple use the following functions.
+```sh
+PoolingManager.Instance.Instantiate("Penguin", Vector3.zero, Quaternion.identity);
+```
 
-  -To instantiate you will need to use the "PoolingManager.Instance.Instantiate" method.
-	Example: "PoolingManager.Instance.Instantiate("Orc", Vector3.zero, Quaternion.identity)" will 
-		  create an orc at position (0,0,0).
-  -Have fun!
+## Meta
+
+Ut Duong – [twitter@TheUtDuong](https://twitter.com/TheUtDuong) – ut@utduong.com
+
+Distributed under the GPL3.0 license. See ``LICENSE`` for more information.
+
+[https://github.com/TheUtDuong](https://github.com/TheUtDuong)
+
+[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/datadog-metrics
+[npm-downloads]: https://img.shields.io/npm/dm/datadog-metrics.svg?style=flat-square
