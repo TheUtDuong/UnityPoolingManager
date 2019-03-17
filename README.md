@@ -11,7 +11,7 @@ Requires Unity3D
 
 ## Usage example
 
-To spawn a penguin monster from your pool you would simple use the following functions.
+To spawn a penguin monster from your pool, you would simply use the following function:
 ```sh
 PoolingManager.Instance.Instantiate("Penguin", Vector3.zero, Quaternion.identity);
 ```
